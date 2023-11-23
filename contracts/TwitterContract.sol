@@ -82,17 +82,35 @@ contract TwitterContract {
         return tweetCount;
     }
 
-    function getTweetByCount(uint _count) public checkIfTweetCountExceed(msg.sender, _count) view returns (Tweet[] memory) {
+    function getTweetByCount(
+        uint _count
+    )
+        public
+        view
+        checkIfTweetCountExceed(msg.sender, _count)
+        returns (Tweet[] memory)
+    {
         Tweet[] memory latestTweet = getTweetUtils(msg.sender, _count);
         return latestTweet;
     }
 
-    function getTweetByUserWithCount(address _user, uint _count) public checkIfTweetCountExceed(_user, _count) view returns (Tweet[] memory) {
+    function getTweetByUserWithCount(
+        address _user,
+        uint _count
+    )
+        public
+        view
+        checkIfTweetCountExceed(_user, _count)
+        returns (Tweet[] memory)
+    {
         Tweet[] memory latestTweet = getTweetUtils(_user, _count);
         return latestTweet;
     }
 
-    function getTweetUtils(address _user, uint _count) private view returns (Tweet[] memory)  {
+    function getTweetUtils(
+        address _user,
+        uint _count
+    ) private view returns (Tweet[] memory) {
         Tweet[] memory latestTweet = new Tweet[](_count);
         uint totalCount = tweets[_user].length;
         uint j = 0;
