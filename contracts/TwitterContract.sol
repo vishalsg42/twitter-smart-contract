@@ -46,8 +46,6 @@ contract TwitterContract {
 
     modifier checkIfTweetCountExceed(address _userAddress, uint _count) {
         uint totalCount = tweets[_userAddress].length;
-        console.log("_count", _count);
-        console.log("totalCount", totalCount);
         require(_count <= totalCount, "Tweet Count exceeds");
         _;
     }
@@ -90,8 +88,8 @@ contract TwitterContract {
         checkIfTweetCountExceed(msg.sender, _count)
         returns (Tweet[] memory)
     {
-        Tweet[] memory latestTweet = getTweetUtils(msg.sender, _count);
-        return latestTweet;
+        // Tweet[] memory latestTweet = getTweetUtils(msg.sender, _count);
+        return getTweetUtils(msg.sender, _count);
     }
 
     function getTweetByUserWithCount(
@@ -103,18 +101,17 @@ contract TwitterContract {
         checkIfTweetCountExceed(_user, _count)
         returns (Tweet[] memory)
     {
-        Tweet[] memory latestTweet = getTweetUtils(_user, _count);
-        return latestTweet;
+        return getTweetUtils(_user, _count);
     }
 
     function getTweetUtils(
         address _user,
         uint _count
     ) private view returns (Tweet[] memory) {
-        Tweet[] memory latestTweet = new Tweet[](_count);
         uint totalCount = tweets[_user].length;
+        Tweet[] memory latestTweet = new Tweet[](totalCount);
         uint j = 0;
-        for (uint index = totalCount; index > 0; index--) {
+        for (uint index = _count; index > 0; index--) {
             Tweet memory ele = tweets[_user][index - 1];
             latestTweet[j] = ele;
             j++;
