@@ -78,9 +78,8 @@ contract TwitterContract {
     function addTweet(
         string calldata content,
         address _authorizedUser
-    ) public checkIfUserIsAuthorize(_authorizedUser) {
+    ) public checkIfUserDoesntExist(msg.sender) checkIfUserIsAuthorize(_authorizedUser) {
         require(bytes(content).length != 0, "Tweet cannot be empty");
-        require(existingUsers[msg.sender], "User doesn't exist");
         uint tc = tweets.length + 1;
         tweets.push(Tweet(tc, content, msg.sender, block.timestamp));
         tweetCountByUser[msg.sender] = tweetCountByUser[msg.sender] + 1;
@@ -146,7 +145,7 @@ contract TwitterContract {
     function followUser(
         address _followingUser
     ) public checkIfUserDoesntExist(msg.sender) {
-        require(!existingUsers[_followingUser], "following user doesn't exist");
+        require(!existingUsers[_followingUser], "following user do not exist");
         address[] storage followingUser = followings[msg.sender];
         followingUser.push(_followingUser);
         address[] storage followedUser = followers[_followingUser];
