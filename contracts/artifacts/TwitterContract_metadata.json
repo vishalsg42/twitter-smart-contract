@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.22+commit.4fc1097e"
+		"version": "0.8.21+commit.d9974bed"
 	},
 	"language": "Solidity",
 	"output": {
@@ -16,11 +16,48 @@
 						"internalType": "string",
 						"name": "content",
 						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "_authorizedUser",
+						"type": "address"
 					}
 				],
 				"name": "addTweet",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_userAddress",
+						"type": "address"
+					}
+				],
+				"name": "authorizeUserForTweet",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_userAddress",
+						"type": "address"
+					}
+				],
+				"name": "checkAuthorization",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -54,6 +91,32 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "fetchFollowers",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_followingUser",
+						"type": "address"
+					}
+				],
+				"name": "followUser",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "uint256",
@@ -61,42 +124,7 @@
 						"type": "uint256"
 					}
 				],
-				"name": "getTweetByCount",
-				"outputs": [
-					{
-						"components": [
-							{
-								"internalType": "uint256",
-								"name": "tweetId",
-								"type": "uint256"
-							},
-							{
-								"internalType": "string",
-								"name": "content",
-								"type": "string"
-							},
-							{
-								"internalType": "address",
-								"name": "author",
-								"type": "address"
-							},
-							{
-								"internalType": "uint256",
-								"name": "timestamp",
-								"type": "uint256"
-							}
-						],
-						"internalType": "struct TwitterContract.Tweet[]",
-						"name": "",
-						"type": "tuple[]"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "getTweetByUser",
+				"name": "getLatestTweetByCount",
 				"outputs": [
 					{
 						"components": [
@@ -142,7 +170,7 @@
 						"type": "uint256"
 					}
 				],
-				"name": "getTweetByUserWithCount",
+				"name": "getLatestTweetByUser",
 				"outputs": [
 					{
 						"components": [
@@ -205,6 +233,42 @@
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_recipient",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "_message",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "_authorizedUser",
+						"type": "address"
+					}
+				],
+				"name": "sendMessage",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_userAddress",
+						"type": "address"
+					}
+				],
+				"name": "unauthorizeUserForTweet",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -235,11 +299,11 @@
 	},
 	"sources": {
 		"contracts/TwitterContract.sol": {
-			"keccak256": "0x9f935d7d10bd2abf5c05c0ceddf15ae174e8e54fe824e3290c78517253f48697",
+			"keccak256": "0x7a582985b2bac0915f9f8eb91d853b692797d9c8ff2c1b1ab0ad8d32e0ec40a0",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://06cf1e2a7c374ebbe3da312fabde9aa2e7fcb8652f246954998090db1ff308fd",
-				"dweb:/ipfs/QmU7pQCJ3uVpQZ7itnF3igaDmMrqqz6wR9CwurDfu7TMA2"
+				"bzz-raw://50fb4c445fffc307a081704c5bafab87e1a556c3eb289eec5dfdcdb29f6d4e7d",
+				"dweb:/ipfs/QmPC8FuvBWaHCRg2bpNNXp7653Tue5SkxUkS3tHKqHNjtD"
 			]
 		},
 		"hardhat/console.sol": {
