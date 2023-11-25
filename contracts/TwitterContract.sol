@@ -47,7 +47,7 @@ contract TwitterContract {
     }
 
     modifier checkIfUserDoesntExist(address _userAddress) {
-        require(existingUsers[_userAddress], "User doesn't exist");
+        require(existingUsers[_userAddress], "User do not exist");
         _;
     }
 
